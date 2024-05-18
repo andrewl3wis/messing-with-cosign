@@ -39,7 +39,7 @@ jobs:
           IMAGE_TAG: signed-test-${{ steps.uuid.outputs.sha_short }}
         id: digest
         run: |
-          echo "image_sha=$(docker inspect --format='{{index .RepoDigests 0}}' ttl.sh/${IMAGE_TAG}:1h)" >> $GITHUB_OUTPUT
+          echo "image_sha=$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }})" >> $GITHUB_OUTPUT
 
       - name: Install cosign
         uses: sigstore/cosign-installer@v3.1.1
