@@ -3,6 +3,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  
 jobs:
  build-sign-container-image:
     runs-on: ubuntu-latest
@@ -58,7 +59,6 @@ jobs:
     # Importing a reusable workflow from another repository and branch
     uses: andrewl3wis/security/.github/workflows/grype.yaml@main
     with:
-      image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       sha: ${{ needs.build-sign-container-image.outputs.sha_short }}
 
     
