@@ -31,7 +31,7 @@ jobs:
         env:
           IMAGE_TAG: ${{ steps.uuid.outputs.sha_short }}
         run: |
-          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(IMAGE_TAG) .
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG} .
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
 
       - name: Get image digest
