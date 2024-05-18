@@ -36,7 +36,7 @@ jobs:
 
       - name: Get image digest
         env:
-          IMAGE_TAG: signed-test-${{ steps.uuid.outputs.sha_short }}
+          IMAGE_TAG: ${{ steps.uuid.outputs.sha_short }}
         id: digest
         run: |
           echo "image_sha=$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG})" >> $GITHUB_OUTPUT
