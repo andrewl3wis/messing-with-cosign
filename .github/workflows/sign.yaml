@@ -60,6 +60,6 @@ jobs:
     uses: andrewl3wis/security/.github/workflows/grype.yaml@main
     with:
       sha: ${{ needs.build-sign-container-image.outputs.sha_short }}
-      image: ${{ needs.build-sign-contianer-image.outputs.image_sha }}
+      image: ${{ needs.build-sign-container-image.outputs.image_sha }}
 
     
