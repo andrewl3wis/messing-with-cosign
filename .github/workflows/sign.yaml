@@ -69,7 +69,7 @@ jobs:
       - name: Keyless signing of image
         run: |
           echo ${{ steps.digest.outputs.image_sha }}
-          cosign sign --no --rekor-url "https://rekor.sigstore.dev/" ${{ steps.digest.outputs.image_sha }}
+          cosign sign --yes=false --rekor-url "https://rekor.sigstore.dev/" ${{ steps.digest.outputs.image_sha }}
 
       - name: Verify the image signing
         run: |
