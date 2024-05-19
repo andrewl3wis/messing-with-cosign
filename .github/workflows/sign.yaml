@@ -93,7 +93,7 @@ jobs:
       id-token: write
       contents: read
       packages: write
-    uses: andrewl3wis/security/.github/workflows/bad_grype.yaml@main
+    uses: andrewl3wis/security/.github/workflows/bad-grype.yaml@main
     with:
       sha: ${{ needs.build-sign-container-image.outputs.sha }}
       image: ${{ needs.build-sign-container-image.outputs.image }}
