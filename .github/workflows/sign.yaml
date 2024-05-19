@@ -65,5 +65,6 @@ jobs:
     with:
       sha: ${{ needs.build-sign-container-image.outputs.sha_short }}
       image: ${{ needs.build-sign-container-image.outputs.image_sha }}
+      blue: "work"
 
     
