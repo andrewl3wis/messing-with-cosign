@@ -63,8 +63,8 @@ jobs:
     # Importing a reusable workflow from another repository and branch
     uses: andrewl3wis/security/.github/workflows/grype.yaml@main
     with:
-      sha: ${{ needs.build-sign-container-image.outputs.sha_short }}
-      image: ${{ needs.build-sign-container-image.outputs.image_sha }}
+      sha: ${{ needs.build-sign-container-image.outputs.sha }}
+      image: ${{ needs.build-sign-container-image.outputs.image }}
       blue: "work"
 
     
