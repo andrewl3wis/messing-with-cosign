@@ -57,6 +57,7 @@ jobs:
       - name: Verify the image signing
         run: |
           cosign verify  --rekor-url "https://rekor.sigstore.dev/" ${{ steps.digest.outputs.image_sha }} --certificate-identity "https://github.com/andrewl3wis/messing-with-cosign/.github/workflows/sign.yaml@refs/heads/main" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" | jq .
+ 
  security-scan:
     needs: build-sign-container-image
     # Importing a reusable workflow from another repository and branch
