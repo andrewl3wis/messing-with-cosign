@@ -2,7 +2,7 @@ name: dontsign
 on: push
 
 jobs:
- build-sign-container-image:
+ build-container-image:
     runs-on: ubuntu-latest
     env:
       REGISTRY: ghcr.io

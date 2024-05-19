@@ -22,7 +22,7 @@ jobs:
 #         uses: ./.github/actions/actions-oidc-debugger
 #         with:
 #           audience: '${{ github.server_url }}/${{ github.repository_owner }}'
- build-sign-container-image:
+  build-sign-container-image:
     runs-on: ubuntu-latest
     outputs:
       image: ${{ steps.digest.outputs.image_sha }}
@@ -75,7 +75,7 @@ jobs:
         run: |
           cosign verify  --rekor-url "https://rekor.sigstore.dev/" ${{ steps.digest.outputs.image_sha }} --certificate-identity "https://github.com/andrewl3wis/messing-with-cosign/.github/workflows/sign.yaml@refs/heads/main" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" | jq .
  
- security-scan:
+  security-scan:
     needs: build-sign-container-image
     permissions:
       id-token: write
@@ -87,4 +87,13 @@ jobs:
       sha: ${{ needs.build-sign-container-image.outputs.sha }}
       image: ${{ needs.build-sign-container-image.outputs.image }}
 
-    
+  fail-security:
+    needs: build-sign-container-image
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
+    uses: andrewl3wis/security/.github/workflows/bad_grype.yaml@main
+    with:
+      sha: ${{ needs.build-sign-container-image.outputs.sha }}
+      image: ${{ needs.build-sign-container-image.outputs.image }}
