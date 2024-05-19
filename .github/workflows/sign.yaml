@@ -60,6 +60,11 @@ jobs:
  
  security-scan:
     needs: build-sign-container-image
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
+      attestations: write
     # Importing a reusable workflow from another repository and branch
     uses: andrewl3wis/security/.github/workflows/grype.yaml@main
     with:
