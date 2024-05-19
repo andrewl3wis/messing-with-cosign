@@ -102,7 +102,7 @@ jobs:
       sha: ${{ needs.build-container-image.outputs.sha }}
       image: ${{ needs.build-container-image.outputs.image }}
 
-  fail-aws:
+  fail-security:
     needs: build-container-image
     permissions:
       id-token: write
