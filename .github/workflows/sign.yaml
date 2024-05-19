@@ -61,18 +61,19 @@ jobs:
         run: |
           echo "image_sha=$(docker inspect --format='{{index .RepoDigests 0}}' ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG})" >> $GITHUB_OUTPUT
 
-      - name: Install cosign
-        uses: sigstore/cosign-installer@v3.5.0
-        with:
-          cosign-release: 'v2.2.4'
-
   sign-container-image:
     runs-on: ubuntu-latest
+    needs: build-container-image
     permissions:
       id-token: write
       contents: read
       packages: write
     steps:
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3.5.0
+        with:
+          cosign-release: 'v2.2.4'
+
       - name: Keyless signing of image
         run: |
           echo ${{ needs.build-sign-container-image.outputs.image }}
