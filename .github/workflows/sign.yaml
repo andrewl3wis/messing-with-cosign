@@ -69,7 +69,7 @@ jobs:
       - name: Keyless signing of image
         run: |
           echo ${{ steps.digest.outputs.image_sha }}
-          cosign sign --tlog-upload=false --rekor-url "https://rekor.sigstore.dev/" ${{ steps.digest.outputs.image_sha }}
+          cosign sign -y --rekor-url "https://rekor.sigstore.dev/" ${{ steps.digest.outputs.image_sha }}
 
       - name: Verify the image signing
         run: |
@@ -81,7 +81,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-      packages: read
+      packages: write
     # Importing a reusable workflow from another repository and branch
     uses: andrewl3wis/security/.github/workflows/grype.yaml@main
     with:
