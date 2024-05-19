@@ -1,4 +1,4 @@
-name: dontsign
+name: "Unsigned Images"
 on: push
 
 jobs:

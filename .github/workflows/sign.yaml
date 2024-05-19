@@ -83,7 +83,7 @@ jobs:
           cosign verify  --rekor-url "https://rekor.sigstore.dev/" ${{ needs.build-sign-container-image.outputs.image }} --certificate-identity "https://github.com/andrewl3wis/messing-with-cosign/.github/workflows/sign.yaml@refs/heads/main" --certificate-oidc-issuer "https://token.actions.githubusercontent.com" | jq .
  
   security-scan:
-    needs: build-sign-container-image
+    needs: build-container-image
     permissions:
       id-token: write
       contents: read
@@ -95,7 +95,7 @@ jobs:
       image: ${{ needs.build-sign-container-image.outputs.image }}
 
   fail-security:
-    needs: build-sign-container-image
+    needs: build-container-image
     permissions:
       id-token: write
       contents: read
