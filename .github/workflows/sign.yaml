@@ -157,7 +157,7 @@ jobs:
         run: kubectl apply -f kyverno/image-signing-policy.yaml
 
       - name: debug
-        run "echo ${{ needs.build-container-image.outputs.sha }}"
+        run: "echo ${{ needs.build-container-image.outputs.sha }}"
 
       - name: try unsigned image
         run: |
