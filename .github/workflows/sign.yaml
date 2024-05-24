@@ -116,9 +116,10 @@ jobs:
   test-signing:
     runs-on: ubuntu-latest
     needs: security-scan
-    with:
-      sha: ${{ needs.build-container-image.outputs.sha }}
-
+    permissions:
+      id-token: read
+      contents: read
+      packages: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -157,8 +158,8 @@ jobs:
         run: kubectl apply -f kyverno/image-signing-policy.yaml
 
       - name: try unsigned image
-        run: kubectl run unsigned --image=ghcr.io/andrewl3wis/messing-with-cosign:FROM ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ inputs.sha }} --restart=Never
-        continue-on-error: true
+        run: kubectl run unsigned --image=ghcr.io/andrewl3wis/messing-with-cosign:FROM ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ needs.build-container-image.outputs.sha  }} --restart=Never
+        
 
       - name: try signed image
-        run: kubectl run signed --image=ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ inputs.sha }} --restart=Never
+        run: kubectl run signed --image=ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ needs.build-container-image.outputs.sha  }} --restart=Never
