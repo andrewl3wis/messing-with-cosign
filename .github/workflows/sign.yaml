@@ -148,7 +148,7 @@ jobs:
       - name: Install Kyverno
         run: |
           kubectl create -f https://github.com/kyverno/kyverno/releases/download/v1.11.1/install.yaml
-          kubectl wait --for=condition=available --timeout=600s deployment/kyverno -n kyverno
+          kubectl wait --for=condition=available --timeout=600s deployment/kyverno-admission-controller -n kyverno
 
       - name: Verify Kyverno installation
         run: kubectl get pods -n kyverno
