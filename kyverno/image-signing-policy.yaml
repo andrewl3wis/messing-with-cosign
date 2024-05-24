@@ -1,0 +1,30 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: verify-image-signature
+spec:
+  rules:
+    - name: validate-image-signature
+      match:
+        resources:
+          kinds:
+            - Pod
+          namespaces:
+            - default
+      verifyImages:
+        - image: "*"
+          key: |
+            -----BEGIN PUBLIC KEY-----
+            MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvSiRzuTVtUscgZhONleG
+            0MegzgBVfbqpsOeu25B7NT4Pp5Cplrxyx7Mo6vZrQHZwkJ2yuCPgImzKDHKhS1az
+            cr01eIb5ApDB0d+dJtJKBkijwfbVRiqzPoPg33vji8NaA3lUTKoOivosRb2UgYJ8
+            MGRDrZH8vlBJmFk5tHGsDyqpMndRWYp3d+Oq76IAM3spMHAXHWkrAoEL5HBMX7xQ
+            COV0Fap0fD3CoE339BTYqHdpJrDGv8cVnRZiBVkAuJD7VKOL2qREbjvPOpnctz+8
+            NOXhSHeszKr/71GSHKzf3UETHIVLMPnrUSewwBQrT8J2Hn28qsjDdXWn8mBZtBKg
+            nrjh3XKDgxsVBuV1iwHj0Ow5oiyWmvYIhRoqVMSdxvJIBaDfxlXr8iLzY9zcXhsu
+            JwZHY5b+Kbw01tkJQAmRofSV+jAUgTnzsmlIpBYK/nzgz0xK7EkCB9LOFsknlUBk
+            6Z7GDu/rOi7uLv8gBHyXyGcAwo58U0azngBSJaFbbXIbJkpFFT9HDLWmVR9iciYc
+            fijAkLP/be+OG+TiVz/Uey/n40zFrJPdCzqbGZ88PtSHMsn1bZ0fk5K1bodUuiP/
+            QDoWz9dadiNelmtcj4dPWyZXTftzX2YE17JoUF2cSsxxqY5v65PkSQxGYbzQVRro
+            3iJG2PLCOpetq52NhtzKYXECAwEAAQ==
+            -----END PUBLIC KEY-----
