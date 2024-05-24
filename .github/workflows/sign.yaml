@@ -163,7 +163,7 @@ jobs:
 
       - name: try unsigned image
         run: |
-          kubectl run -n default --image nginx --restart=Never unsigned
+          kubectl apply -f testing/nginx.yaml
           # kubectl wait --for=condition=available --timeout=600s pod/unsigned -n default
           # kubectl describe pod unsigned -n default
         continue-on-error: true
