@@ -14,11 +14,9 @@ spec:
         - resources:
             kinds:
               - Pod
-            namespaces:
-              - default
       verifyImages:
         - imageReferences:
-          - "*"
+          - "ghcr.io/andrewl3wis/*"
           mutateDigest: true
           required: true
           attestors:
