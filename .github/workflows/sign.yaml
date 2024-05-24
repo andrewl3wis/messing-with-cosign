@@ -115,7 +115,9 @@ jobs:
 
   test-signing:
     runs-on: ubuntu-latest
-    needs: security-scan
+    needs: 
+      - security-scan
+      - build-container-image
     permissions:
       contents: read
       packages: read
@@ -161,8 +163,8 @@ jobs:
 
       - name: try unsigned image
         run: |
-          kubectl run unsigned --image=ghcr.io/andrewl3wis/messing-with-cosign:FROM ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ needs.build-container-image.outputs.sha }} --restart=Never
+          kubectl run -n default --image ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ needs.build-container-image.outputs.sha }} --restart=Never unsigned 
 
       - name: try signed image
         run: |
-          kubectl run signed --image=ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{needs.build-container-image.outputs.sha}} --restart=Never
+          kubectl run -n default --image=ghcr.io/andrewl3wis/messing-with-cosign:${{needs.build-container-image.outputs.sha}} --restart=Never signed
