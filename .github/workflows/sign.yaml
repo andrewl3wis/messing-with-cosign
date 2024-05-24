@@ -163,7 +163,7 @@ jobs:
 
       - name: try unsigned image
         run: |
-          kubectl run -n default --image ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ needs.build-container-image.outputs.sha }} --restart=Never unsigned -- sleep 1000
+          kubectl run -n default --image nginx --restart=Never unsigned
           # kubectl wait --for=condition=available --timeout=600s pod/unsigned -n default
           # kubectl describe pod unsigned -n default
         continue-on-error: true
