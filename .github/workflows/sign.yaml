@@ -170,4 +170,6 @@ jobs:
           kubectl run -n default --image=ghcr.io/andrewl3wis/messing-with-cosign:${{needs.build-container-image.outputs.sha}} --restart=Never signed
       
       - name: Get Events
-        run: kubectl get events -n default
+        run: |
+          kubectl get events -n default
+          kubectl get pods -n default
