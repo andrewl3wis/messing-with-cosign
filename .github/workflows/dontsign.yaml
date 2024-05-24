@@ -29,7 +29,7 @@ jobs:
 
       - name: Build and push
         env:
-          IMAGE_TAG: signed-test-${{ steps.uuid.outputs.sha_short }}
+          IMAGE_TAG: ${{ steps.uuid.outputs.sha_short }}
         run: |
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG} .
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
