@@ -156,7 +156,9 @@ jobs:
         run: kubectl get pods -n kyverno
       
       - name: install Kyverno policy
-        run: kubectl apply -f kyverno/image-signing-policy.yaml
+        run: |
+          kubectl apply -f kyverno/image-signing-policy.yaml
+          kubectl wait --for=condition=Ready --timeout=300s policy/verify-image-signature -n default
 
       - name: debug
         run: "echo ${{ needs.build-container-image.outputs.sha }}"
