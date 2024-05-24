@@ -156,9 +156,14 @@ jobs:
       - name: install Kyverno policy
         run: kubectl apply -f kyverno/image-signing-policy.yaml
 
+      - name: debug
+        run "echo ${{ needs.build-container-image.outputs.sha }}"
+
       - name: try unsigned image
-        run: kubectl run unsigned --image=ghcr.io/andrewl3wis/messing-with-cosign:FROM ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{needs.build-container-image.outputs.sha}} --restart=Never
+        run: |
+        kubectl run unsigned --image=ghcr.io/andrewl3wis/messing-with-cosign:FROM ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ needs.build-container-image.outputs.sha }} --restart=Never
         
 
       - name: try signed image
-        run: kubectl run signed --image=ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{needs.build-container-image.outputs.sha}} --restart=Never
+        run: |
+        kubectl run signed --image=ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{needs.build-container-image.outputs.sha}} --restart=Never
