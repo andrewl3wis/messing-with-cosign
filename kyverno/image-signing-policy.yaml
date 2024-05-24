@@ -17,8 +17,6 @@ spec:
       verifyImages:
         - imageReferences:
           - "ghcr.io/andrewl3wis/*"
-          mutateDigest: true
-          required: true
           attestors:
           - count: 1
             entries:
