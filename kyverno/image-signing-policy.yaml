@@ -37,3 +37,6 @@ spec:
                   QDoWz9dadiNelmtcj4dPWyZXTftzX2YE17JoUF2cSsxxqY5v65PkSQxGYbzQVRro
                   3iJG2PLCOpetq52NhtzKYXECAwEAAQ==
                   -----END PUBLIC KEY-----
+                rekor:
+                  ignoreTlog: true
+                  url: https://rekor.sigstore.dev  
