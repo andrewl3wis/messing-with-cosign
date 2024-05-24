@@ -176,6 +176,7 @@ jobs:
       
       - name: Get Events
         run: |
+          kubectl get pods -n default
           kubectl wait --for=condition=available --timeout=600s pod/signed -n default
           kubectl describe pod signed -n default      
           kubectl get events -n default
