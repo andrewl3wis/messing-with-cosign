@@ -1,7 +1,8 @@
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
   name: verify-image-signature
+  namespace: default
 spec:
   validationFailureAction: enforce
   background: false
