@@ -145,7 +145,7 @@ jobs:
 
       - name: Install Kyverno
         run: |
-          kubectl create -f https://raw.githubusercontent.com/kyverno/kyverno/main/definitions/release/install.yaml
+          kubectl create -f https://github.com/kyverno/kyverno/releases/download/v1.11.1/install.yaml
           kubectl wait --for=condition=available --timeout=600s deployment/kyverno -n kyverno
 
       - name: Verify Kyverno installation
