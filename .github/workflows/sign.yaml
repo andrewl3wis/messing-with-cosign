@@ -185,4 +185,4 @@ jobs:
           kubectl get events -n default
           kubectl get pods -n default
           kubectl wait --for=condition=Ready --timeout=30s deployment/unsigned -n default || true
-          kubectl describe pod unsigned -n default
+          kubectl describe deployment unsigned -n default

@@ -21,8 +21,8 @@ spec:
           attestors:
           - count: 1
             entries:
-            - certificates:
-                certChain: |-
+            - keys:
+                publicKeys: |-
                   -----BEGIN PUBLIC KEY-----
                   MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvSiRzuTVtUscgZhONleG
                   0MegzgBVfbqpsOeu25B7NT4Pp5Cplrxyx7Mo6vZrQHZwkJ2yuCPgImzKDHKhS1az
