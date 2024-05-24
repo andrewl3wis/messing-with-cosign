@@ -162,7 +162,6 @@ jobs:
       - name: try unsigned image
         run: |
         kubectl run unsigned --image=ghcr.io/andrewl3wis/messing-with-cosign:FROM ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{ needs.build-container-image.outputs.sha }} --restart=Never
-        
 
       - name: try signed image
         run: |
