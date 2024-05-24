@@ -17,6 +17,7 @@ spec:
         - imageReferences:
           - "*"
           mutateDigest: true
+          required: true
           attestors:
           - entries:
             - keys:
