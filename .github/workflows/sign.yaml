@@ -179,12 +179,7 @@ jobs:
       
       - name: Get Events
         run: |
-          kubectl describe policies verify-image-signature
-          kubectl get pods -n default
-          kubectl wait --for=condition=Ready --timeout=30s pod/signed -n default || true
-          kubectl describe pod signed -n default      
+          kubectl describe policies verify-image-signature -n default   
           kubectl get events -n default
           kubectl get pods -n default
-          kubectl wait --for=condition=Ready --timeout=30s pod/unsigned -n default || true
-          kubectl describe pod unsigned -n default
         continue-on-error: true
