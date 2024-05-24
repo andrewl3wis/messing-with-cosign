@@ -157,6 +157,7 @@ jobs:
       
       - name: install Kyverno policy
         run: |
+          sleep 10
           kubectl apply -f kyverno/image-signing-policy.yaml
           kubectl wait --for=condition=Ready --timeout=300s policy/verify-image-signature -n default
 
@@ -165,7 +166,7 @@ jobs:
 
       - name: try unsigned image
         run: |
-          kubectl apply -f testing/nginx.yaml
+          kubectl run -n default --image=ghcr.io/andrewl3wis/messing-with-cosign-unsigned:${{needs.build-container-image.outputs.sha}} --restart=Never unsigned -- sleep 1000
           # kubectl wait --for=condition=available --timeout=600s pod/unsigned -n default
           # kubectl describe pod unsigned -n default
         continue-on-error: true
@@ -184,5 +185,6 @@ jobs:
           kubectl describe pod signed -n default      
           kubectl get events -n default
           kubectl get pods -n default
-          kubectl wait --for=condition=Ready --timeout=30s deployment/unsigned -n default || true
-          kubectl describe deployment unsigned -n default
+          kubectl wait --for=condition=Ready --timeout=30s pod/unsigned -n default || true
+          kubectl describe pod unsigned -n default
+        continue-on-error: true
