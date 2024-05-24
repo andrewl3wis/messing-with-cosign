@@ -25,7 +25,7 @@ spec:
           - count: 1
             entries:
             - keys:
-                publicKeys: |
+                publicKeys: |-
                   -----BEGIN PUBLIC KEY-----
                   MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAvSiRzuTVtUscgZhONleG
                   0MegzgBVfbqpsOeu25B7NT4Pp5Cplrxyx7Mo6vZrQHZwkJ2yuCPgImzKDHKhS1az
